@@ -1,13 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="Menus.uss" />
-    <ui:VisualElement name="main-menu">
-        <ui:Label text="Project Name&#10;" display-tooltip-when-elided="True" name="main-title" style="-unity-font-style: bold; font-size: 40px; color: rgb(197, 35, 35);" />
+    <ui:VisualElement name="main-menu" class="options-pane">
+        <ui:Label text="Project Name" display-tooltip-when-elided="True" name="main-title" style="-unity-font-style: bold; font-size: 40px; color: rgb(197, 35, 35);" />
         <ui:Button text="Settings" display-tooltip-when-elided="True" name="settings-button" />
         <ui:Button text="Quit" display-tooltip-when-elided="True" name="quit-button" />
         <ui:Button text="Start" display-tooltip-when-elided="True" name="start-button" />
+
+        <ui:IMGUIContainer name="settings-menux">
+            <ui:Slider picking-mode="Ignore" label="Slider" value="42" high-value="100">
+                <ui:Label text="Complexity" display-tooltip-when-elided="True" />
+            </ui:Slider>
+        </ui:IMGUIContainer>
     </ui:VisualElement>
     <ui:VisualElement name="settings-menu-ve" style="background-color: rgb(183, 179, 52);" />
-
     <ui:IMGUIContainer name="settings-menu">
         <ui:Label text="Settings Menu" display-tooltip-when-elided="True" />
         <ui:Toggle label="Toggle" />

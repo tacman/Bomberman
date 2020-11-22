@@ -17,8 +17,16 @@ public class UIController : MonoBehaviour
         
         // https://forum.unity.com/threads/how-can-we-attach-script-to-our-uxml-uss-at-runtime.872242/
         root = GetComponent<UIDocument>().rootVisualElement;
-        Debug.Log(root.name);
         
+        Debug.Log(root.name + "/" + root.viewDataKey);
+        
+        
+        var buttons = root.Q<Button>();
+        buttons.clickable = new Clickable(evt =>
+        {
+            Debug.LogFormat("Got a button.{0}", evt.target.ToString());
+        });
+
         mainMenu = root.Q<VisualElement>("main-menu");
         
         settingsUI = root.Q<IMGUIContainer>("settings-menu");
@@ -38,8 +46,12 @@ public class UIController : MonoBehaviour
         });
 
         Button settingsButton = root.Q<Button>("settings-button");
-        settingsButton.clickable = new Clickable(() =>
+        settingsButton.clickable = new Clickable((EventBase evt) =>
         {
+            Debug.Log(evt.ToString());
+            Debug.Log(evt.imguiEvent.ToString());
+            Debug.Log(evt.target.ToString());
+            Debug.Log(evt.currentTarget.ToString());
             settingsUI.style.display = DisplayStyle.Flex;
             mainMenu.style.display = DisplayStyle.None;
         });
